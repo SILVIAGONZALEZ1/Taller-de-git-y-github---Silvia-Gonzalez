@@ -19,3 +19,18 @@ form.addEventListener("submit", function (e) {
   message.style.color = "green";
   form.reset();
 });
+
+// FAQ: ocultar respuestas y añadir toggle a cada pregunta
+document.querySelectorAll('.faq-answer').forEach((ans) => {
+  ans.style.display = 'none';
+});
+
+document.querySelectorAll('.faq-question').forEach((btn) => {
+  btn.setAttribute('aria-expanded', 'false');
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+});
