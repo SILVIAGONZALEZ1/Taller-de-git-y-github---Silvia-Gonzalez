@@ -5,3 +5,5 @@ Cristina_Agregue: informacion-precios.html - Página principal con toda la infor
 
 index.html - Actualizado el menú de navegación para incluir enlace a "Precios e Info"
 styles.css - Agregados estilos para las nuevas secciones (tablas de precios, promociones, formas de pago)
+
+Agregar carousel con 3 imagenes, estilo y funcionamiento js
