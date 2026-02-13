@@ -21,20 +21,32 @@
       </nav>
     </header>
 
-    <section id="inicio" class="hero">
-      <div class="hero-content">
-        <h1>Endulzamos tus momentos especiales</h1>
-        <p>
-          Repostería artesanal hecha con ingredientes de calidad y mucho amor.
-        </p>
-        <a
-          href="https://wa.me/5492610000000"
-          class="btn-primary"
-          target="_blank"
-        >
-          Hacé tu pedido por WhatsApp
-        </a>
-      </div>
+    <section id="inicio" class="hero-carousel">
+        <div class="carousel-inner">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/syed-maaz-QLSh4y2v93c-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Endulzamos tus momentos especiales</h1>
+                    <p>Repostería artesanal hecha con ingredientes de calidad y mucho amor.</p>
+                    <a href="https://wa.me/5492610000000" class="btn-primary" target="_blank">Hacé tu pedido por WhatsApp</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/brooke-lark-pGM4sjt_BdQ-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Diseños Personalizados</h1>
+                    <p>Creamos la torta de tus sueños para ese evento inolvidable.</p>
+                    <a href="#productos" class="btn-primary">Ver Catálogo</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/american-heritage-chocolate-Bkm6wO6pHOY-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Sabor 100% Artesanal</h1>
+                    <p>Recetas tradicionales con un toque moderno y único.</p>
+                    <a href="#contacto" class="btn-primary">Consultar Presupuesto</a>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
     </section>
 
     <section id="productos" class="section">
