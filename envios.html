@@ -41,8 +41,11 @@
       <!-- DATOS -->
       <div class="card">
 
+        <h3 style="color: #7a4a3b; margin-bottom: 16px;">Seleccionar Productos</h3>
+
         <label for="product">Producto</label>
         <select id="product">
+          <option value="">-- Seleccionar producto --</option>
           <option value="3500">Tortas personalizadas — $3500</option>
           <option value="450">Cupcakes — $450</option>
           <option value="250">Cookies artesanales — $250</option>
@@ -53,6 +56,23 @@
           <label for="customPrice">Precio del producto</label>
           <input type="text" id="customPrice" placeholder="Ej. 199.99">
         </div>
+
+        <label for="quantity">Cantidad</label>
+        <input type="number" id="quantity" value="1" min="1" max="100" style="width: 100px;">
+
+        <button type="button" class="btn btn-add" id="addProductBtn" style="width: auto; display: inline-block; margin-top: 16px;">+ Agregar al carrito</button>
+
+        <!-- CARRITO DE PRODUCTOS -->
+        <div id="cartSection" class="cart-section hidden">
+          <h3 style="color: #7a4a3b; margin-top: 24px; margin-bottom: 16px; border-top: 2px solid #e8d4cc; padding-top: 16px;">Productos en el carrito</h3>
+          <div id="cartItems" class="cart-items">
+            <!-- Los productos se agregarán aquí -->
+          </div>
+        </div>
+
+        <hr style="margin: 24px 0; border: none; border-top: 2px solid #e8d4cc;">
+
+        <h3 style="color: #7a4a3b; margin: 16px 0;">Datos de entrega</h3>
 
         <label for="name">Nombre y apellido</label>
         <input type="text" id="name" required>
@@ -125,12 +145,42 @@
 
   </div>
 
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div id="confirmationModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h2>Confirmar Pedido</h2>
+      
+      <div id="orderSummary" class="order-summary">
+        <!-- Los datos se cargarán aquí con JavaScript -->
+      </div>
+
+      <div class="modal-actions">
+        <button id="cancelBtn" class="btn btn-cancel">Cancelar</button>
+        <button id="modifyBtn" class="btn btn-modify">Modificar datos</button>
+        <button id="confirmBtn" class="btn btn-confirm">Confirmar pedido</button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- JS -->
   <script>
     const product = document.getElementById('product');
+    const quantity = document.getElementById('quantity');
     const customWrap = document.getElementById('customPriceWrap');
-    const result = document.getElementById('result');
+    const cartSection = document.getElementById('cartSection');
+    const cartItems = document.getElementById('cartItems');
+    const addProductBtn = document.getElementById('addProductBtn');
+    const shippingForm = document.getElementById('shippingForm');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const orderSummary = document.getElementById('orderSummary');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const modifyBtn = document.getElementById('modifyBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    // Array para almacenar los productos del carrito
+    let cart = [];
 
     product.addEventListener('change', () => {
       customWrap.classList.toggle('hidden', product.value !== 'custom');
@@ -147,17 +197,287 @@
       return base;
     }
 
-    document.getElementById('calculate').onclick = () => {
-      const prod = product.value === 'custom'
+    // AGREGAR PRODUCTO AL CARRITO
+    addProductBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      if(!product.value) {
+        alert('Por favor, selecciona un producto');
+        return;
+      }
+
+      if(product.value === 'custom') {
+        const customPrice = document.getElementById('customPrice').value;
+        if(!customPrice || parseFloat(customPrice) <= 0) {
+          alert('Por favor, ingresa un precio válido');
+          return;
+        }
+      }
+
+      const productValue = product.value;
+      const productText = product.options[product.selectedIndex].text;
+      const qty = parseInt(quantity.value) || 1;
+      const unitPrice = productValue === 'custom' 
         ? precio(document.getElementById('customPrice').value)
-        : precio(product.value);
+        : precio(productValue);
+
+      // Agregar al carrito
+      cart.push({
+        id: Date.now(),
+        text: productText,
+        unitPrice: unitPrice,
+        quantity: qty,
+        total: unitPrice * qty
+      });
+
+      renderCart();
+      product.value = '';
+      quantity.value = 1;
+      customWrap.classList.add('hidden');
+      document.getElementById('customPrice').value = '';
+    });
+
+    // RENDERIZAR EL CARRITO
+    function renderCart() {
+      if(cart.length === 0) {
+        cartSection.classList.add('hidden');
+        return;
+      }
+
+      cartSection.classList.remove('hidden');
+      cartItems.innerHTML = '';
+
+      let subtotal = 0;
+
+      cart.forEach((item, index) => {
+        subtotal += item.total;
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.text}</div>
+            <div class="cart-item-details">
+              $${item.unitPrice.toFixed(2)} × ${item.quantity} = <strong>$${item.total.toFixed(2)}</strong>
+            </div>
+          </div>
+          <button type="button" class="btn-remove" onclick="removeFromCart(${index})">✕</button>
+        `;
+        cartItems.appendChild(cartItem);
+      });
+
+      // Agregar subtotal
+      const subtotalDiv = document.createElement('div');
+      subtotalDiv.className = 'cart-subtotal';
+      subtotalDiv.innerHTML = `
+        <span>Subtotal de productos:</span>
+        <strong>$${subtotal.toFixed(2)}</strong>
+      `;
+      cartItems.appendChild(subtotalDiv);
+    }
+
+    // ELIMINAR PRODUCTO DEL CARRITO
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    document.getElementById('calculate').onclick = () => {
+      if(cart.length === 0) {
+        alert('Por favor, agrega productos al carrito primero');
+        return;
+      }
+
+      let subtotal = 0;
+      cart.forEach(item => subtotal += item.total);
 
       const ship = envio(distance.value, shippingSpeed.value);
-      const total = prod + ship;
+      const total = subtotal + ship;
 
       result.classList.remove('hidden');
-      result.innerHTML = `Total a pagar: <strong>$${total.toFixed(2)}</strong>`;
+      result.innerHTML = `Subtotal: $${subtotal.toFixed(2)} + Envío: $${ship} = Total: <strong>$${total.toFixed(2)}</strong>`;
     };
+
+    // FUNCIÓN PARA OBTENER LOS DATOS DEL FORMULARIO
+    function getFormData() {
+      if(cart.length === 0) {
+        alert('Por favor, agrega al menos un producto al carrito');
+        return null;
+      }
+
+      const name = document.getElementById('name').value || 'No ingresado';
+      const email = document.getElementById('email').value || 'No ingresado';
+      const phone = document.getElementById('phone').value || 'No ingresado';
+      const address = document.getElementById('address').value || 'No ingresado';
+      const city = document.getElementById('city').value || 'No ingresado';
+      const distance = document.getElementById('distance').value;
+      const distanceText = document.getElementById('distance').options[document.getElementById('distance').selectedIndex].text;
+      const notes = document.getElementById('notes').value || 'Sin notas';
+      
+      const paymentRadios = document.querySelectorAll('input[name="payment"]');
+      let paymentMethod = 'No seleccionado';
+      paymentRadios.forEach(radio => {
+        if(radio.checked) {
+          paymentMethod = radio.value.charAt(0).toUpperCase() + radio.value.slice(1);
+        }
+      });
+
+      const shippingSpeed = document.getElementById('shippingSpeed').value;
+      const shippingSpeedText = document.getElementById('shippingSpeed').options[document.getElementById('shippingSpeed').selectedIndex].text;
+
+      // Calcular totales
+      let subtotal = 0;
+      cart.forEach(item => subtotal += item.total);
+      const ship = envio(distance, shippingSpeed);
+      const total = subtotal + ship;
+
+      return {
+        cart: cart,
+        subtotal: subtotal.toFixed(2),
+        name,
+        email,
+        phone,
+        address,
+        city,
+        distance: distanceText,
+        notes,
+        paymentMethod,
+        shippingSpeed: shippingSpeedText,
+        shipping: ship,
+        total: total.toFixed(2)
+      };
+    }
+
+    // FUNCIÓN PARA MOSTRAR EL MODAL
+    function showConfirmationModal() {
+      const data = getFormData();
+      
+      if(!data) return;
+
+      let productsHTML = '';
+      data.cart.forEach(item => {
+        productsHTML += `
+          <div class="summary-item">
+            <span class="summary-label">${item.text}</span>
+            <span class="summary-value">$${item.unitPrice.toFixed(2)} × ${item.quantity} = $${item.total.toFixed(2)}</span>
+          </div>
+        `;
+      });
+
+      orderSummary.innerHTML = `
+        <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #d16c7c;">
+          <strong style="color: #7a4a3b; font-size: 1.1rem;">Productos</strong>
+        </div>
+        ${productsHTML}
+        <div class="summary-item" style="margin-top: 12px; padding-top: 12px; border-top: 2px solid #e8d4cc;">
+          <span class="summary-label">Subtotal:</span>
+          <span class="summary-value">$${data.subtotal}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Envío (${data.distance}):</span>
+          <span class="summary-value">$${data.shipping}</span>
+        </div>
+        <div class="summary-item total-item">
+          <span class="summary-label">Total a pagar:</span>
+          <span class="summary-value total-value">$${data.total}</span>
+        </div>
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #e8d4cc;">
+          <strong style="color: #7a4a3b;">Datos de entrega</strong>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Nombre:</span>
+          <span class="summary-value">${data.name}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Correo:</span>
+          <span class="summary-value">${data.email}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Teléfono:</span>
+          <span class="summary-value">${data.phone}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Dirección:</span>
+          <span class="summary-value">${data.address}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Ciudad:</span>
+          <span class="summary-value">${data.city}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Método de pago:</span>
+          <span class="summary-value">${data.paymentMethod}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Velocidad de envío:</span>
+          <span class="summary-value">${data.shippingSpeed}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Notas:</span>
+          <span class="summary-value">${data.notes}</span>
+        </div>
+      `;
+      
+      confirmationModal.classList.remove('hidden');
+    }
+
+    // FUNCIÓN PARA CERRAR EL MODAL
+    function closeConfirmationModal() {
+      confirmationModal.classList.add('hidden');
+    }
+
+    // EVENTO PARA ABRIR EL MODAL AL HACER SUBMIT
+    shippingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Validar que haya datos obligatorios
+      if(cart.length === 0) {
+        alert('Por favor, agrega al menos un producto al carrito');
+        return;
+      }
+
+      if(!document.getElementById('name').value || !document.getElementById('email').value || !document.getElementById('address').value) {
+        alert('Por favor, completa los campos obligatorios: Nombre, Correo y Dirección');
+        return;
+      }
+      
+      showConfirmationModal();
+    });
+
+    // BOTÓN CANCELAR
+    cancelBtn.addEventListener('click', () => {
+      closeConfirmationModal();
+    });
+
+    // BOTÓN MODIFICAR DATOS
+    modifyBtn.addEventListener('click', () => {
+      closeConfirmationModal();
+      document.getElementById('name').focus();
+    });
+
+    // BOTÓN CONFIRMAR PEDIDO
+    confirmBtn.addEventListener('click', () => {
+      const data = getFormData();
+      let productsList = '';
+      data.cart.forEach(item => {
+        productsList += `\n- ${item.text} (${item.quantity}x) = $${item.total.toFixed(2)}`;
+      });
+      
+      alert(`¡Pedido confirmado!\n\nProdcutos:${productsList}\n\nDatos:\n- Cliente: ${data.name}\n- Correo: ${data.email}\n- Total: $${data.total}\n\nNos comunicaremos pronto para confirmar la entrega.`);
+      closeConfirmationModal();
+      shippingForm.reset();
+      cart = [];
+      cartSection.classList.add('hidden');
+      cartItems.innerHTML = '';
+      customWrap.classList.add('hidden');
+      result.classList.add('hidden');
+      product.value = '';
+      quantity.value = 1;
+    });
+
+    // CERRAR MODAL AL HACER CLICK EN EL OVERLAY
+    document.querySelector('.modal-overlay').addEventListener('click', () => {
+      closeConfirmationModal();
+    });
   </script>
 
 </body>
