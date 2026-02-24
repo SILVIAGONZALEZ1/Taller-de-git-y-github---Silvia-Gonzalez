@@ -1,4 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
+// Scroll suave
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document
+      .querySelector(this.getAttribute("href"))
+      .scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// Validación simple del formulario
+const form = document.getElementById("contactForm");
+const message = document.getElementById("formMessage");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  message.textContent = "¡Gracias por tu mensaje! Te responderemos pronto 💕";
+  message.style.color = "green";
+  form.reset();
+});
+
+// FAQ: ocultar respuestas y añadir toggle a cada pregunta
+document.querySelectorAll('.faq-answer').forEach((ans) => {
+  ans.style.display = 'none';
+});
+
+document.querySelectorAll('.faq-question').forEach((btn) => {
+  btn.setAttribute('aria-expanded', 'false');
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+});
+/* --- LÓGICA DEL CAROUSEL --- */
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+/**
+ * Muestra un slide específico basado en su índice
+ */
+function showSlide(index) {
+    // 1. Quitamos la clase 'active' de la imagen actual
+    slides[currentSlide].classList.remove('active');
     
     // ---------------------------------------------------------
     // 1. MENU HAMBURGUESA (Móvil)
@@ -141,4 +188,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+    // 3. Mostramos la nueva imagen
+    slides[currentSlide].classList.add('active');
+}
+
+/**
+ * Función que llaman los botones 'prev' y 'next'
+ */
+function changeSlide(direction) {
+    showSlide(currentSlide + direction);
+}
+
+/**
+ * Cambio automático: cambia de slide cada 5 segundos
+ */
+let autoPlay = setInterval(() => {
+    changeSlide(1);
+}, 5000);
+
+// Opcional: Pausar el autoplay cuando el usuario hace clic en una flecha
+// para que no se cambie la imagen bruscamente mientras interactúa.
+const controls = document.querySelectorAll('.prev, .next');
+controls.forEach(control => {
+    control.addEventListener('click', () => {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => { changeSlide(1); }, 5000);
+    });
 });
