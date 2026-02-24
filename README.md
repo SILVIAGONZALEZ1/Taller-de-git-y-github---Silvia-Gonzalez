@@ -21,3 +21,5 @@ Blitowsky{
     - Se añadió la funcionalidad de acordeón a las categorías de productos, al clickear sobre la categoría despliega todos los productos relacionados
     - Se añadió la funcionalidad que permite visualizar en grande las imágenes ilustrativas al clickear la tarjeta del producto
 }
+Gabriel Perez:
+  Se agrego Eventos Especiales y Buffet de bodas, con sus respectivas imagenes e informacion. Se modifico y mejoro los errores
