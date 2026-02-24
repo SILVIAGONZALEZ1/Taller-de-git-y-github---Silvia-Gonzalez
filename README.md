@@ -9,3 +9,5 @@ index.html - Actualizado el menú de navegación para incluir enlace a "Precios 
 styles.css - Agregados estilos para las nuevas secciones (tablas de precios, promociones, formas de pago)
 
 Agregar carousel con 3 imagenes, estilo y funcionamiento js
+
+He subido una imagen nueva para el logo, lo agregue al header reemplazando el logo anterior, y modifique el CSS para el logo.
