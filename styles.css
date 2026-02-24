@@ -21,6 +21,143 @@ body {
     z-index: 10;
 }
 
+/* --- ESTILOS DEL ACORDEÓN --- */
+
+/* El botón principal */
+.accordion-btn {
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  padding: 18px 20px;
+  width: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  text-align: left;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-btn h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+/* Efecto hover y estado activo (abierto) */
+.active, .accordion-btn:hover {
+  background-color: #fafafa;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Animación de la flechita */
+.accordion-btn .icon {
+  font-size: 0.9rem;
+  color: #888;
+  transition: transform 0.3s ease;
+}
+
+.active .icon {
+  transform: rotate(180deg); /* Gira la flecha cuando se abre */
+  color: #d4a373; /* Podés poner el color principal de tu marca */
+}
+
+/* El contenedor del contenido (oculto por defecto) */
+.accordion-content {
+  padding: 0 20px;
+  background-color: #fff;
+  max-height: 0; /* Lo mantiene cerrado */
+  overflow: hidden; /* Evita que el contenido se desborde */
+  transition: max-height 0.3s ease-out; /* Animación suave al abrir */
+  border-radius: 0 0 8px 8px;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+  border-bottom: 1px solid transparent;
+}
+
+/* Solo mostramos el borde inferior cuando está abierto */
+.active + .accordion-content {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 20px;
+}
+
+.accordion-content .price-table {
+  padding: 15px 0;
+}
+
+/* --- ESTILOS DEL MODAL (LIGHTBOX) --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000; /* Asegura que esté por encima de toda la página */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
+    backdrop-filter: blur(4px); /* Efecto borroso de fondo (muy moderno) */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Clase que agregaremos con JS para mostrarlo suavemente */
+.modal.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80vh; /* Ocupará máximo el 80% del alto de la pantalla */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: scale(0.8); /* Empieza un poco más chica */
+    transition: transform 0.3s ease; /* Transición suave */
+    object-fit: contain; /* Asegura que se vea entera sin recortarse */
+}
+
+/* Efecto de zoom al aparecer */
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+/* Texto debajo de la imagen */
+#caption {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Botón de cerrar (la X) */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #d4a373; /* Cambia a tu color principal al pasar el mouse */
+}
+
+/* Cambia el cursor cuando pasas por encima de una miniatura */
+.row-thumbnail {
+    cursor: zoom-in;
+}
+
 .header nav a {
     margin-left: 20px;
     text-decoration: none;
@@ -570,4 +707,24 @@ input, textarea {
         padding: 10px;
         font-size: 18px;
     }
+}
+/* --- ESTILOS PARA LAS MINIATURAS DE PRECIOS --- */
+
+.row-thumbnail {
+    /* 1. Definimos el tamaño del "rectángulo" contenedor */
+    width: 70px;   /* Ancho fijo */
+    height: 70px;  /* Alto fijo (igual al ancho para un cuadrado) */
+
+    /* 2. La magia para que no se deforme */
+    object-fit: cover; 
+    /* 'cover' recorta la imagen para llenar el espacio sin perder proporción.
+       Si quisieras que se vea toda la imagen aunque queden bordes vacíos, usarías 'contain' */
+
+    /* 3. Estilos estéticos opcionales */
+    border-radius: 12px; /* Bordes redondeados suaves */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Pequeña sombra para darle volumen */
+    border: 2px solid #fff; /* Un pequeño marco blanco para resaltarla del fondo */
+    
+    /* Asegura que no se achique más de la cuenta en celulares */
+    flex-shrink: 0; 
 }
