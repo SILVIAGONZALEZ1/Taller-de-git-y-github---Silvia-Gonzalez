@@ -33,6 +33,20 @@ body {
     font-weight: bold;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    text-decoration: none;
+    color: #4b2e2e; 
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
 .hero {
     background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
         url("https://images.unsplash.com/photo-1542826438-8b6b9a2caa7d") center/cover;
