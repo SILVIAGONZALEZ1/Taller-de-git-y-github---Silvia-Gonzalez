@@ -12,13 +12,19 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">🍰 Dulce Aroma</div>
+      <div class="logo">
+        <a href="#inicio">
+          <img src="img/logo.png" alt="Dulce Aroma" style="height: 50px;">
+          <span class="titulo">Dulce Aroma</span>
+        </a>
+      </div>
       <nav>
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
         <a href="informacion-precios.html">Precios e Info</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#contacto">Contacto</a>
+        <a href="#faq-container">Preguntas Frecuentes</a>
       </nav>
     </header>
 
@@ -137,6 +143,31 @@
       <p id="formMessage"></p>
     </section>
 
+    <section id="faq-container" class="section alt"> 
+      <h2>Preguntas Frecuentes 🍬</h2>
+      
+      <div class="faq-item">
+        <button class="faq-question">¿Hacen envíos el mismo día?</button>
+        <div class="faq-answer">
+          <p>¡Sí! Si realizas tu pedido antes de las 14:00 hs, tus dulces llegarán el mismo día a tu domicilio.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">¿Tienen opciones sin azúcar o gluten?</button>
+        <div class="faq-answer">
+          <p>Contamos con una línea especial "Sweet Care" diseñada específicamente para celíacos y personas que no consumen azúcar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">¿Cómo conservo mis dulces?</button>
+        <div class="faq-answer">
+          <p>Recomendamos mantenerlos en un lugar fresco y seco. En el caso de los rellenos con crema, deben ir directo al refrigerador.</p>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
       <p>© 2026 Dulce Aroma | Repostería Artesanal</p>
       <p>📍 Mendoza, Argentina | 📱 Instagram & WhatsApp </p>
@@ -145,7 +176,11 @@
     <a href="https://wa.me/5492610000000" class="whatsapp-btn" target="_blank"
       >💬</a
     >
+    
 
+
+
+    
     <script src="script.js"></script>
   </body>
 </html>

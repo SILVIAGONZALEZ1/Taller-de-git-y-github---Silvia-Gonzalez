@@ -28,9 +28,23 @@ body {
     font-weight: 500;
 }
 
-.logo {
-    font-size: 1.5rem;
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    text-decoration: none;
+    color: #4b2e2e; 
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+.titulo{
     font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .hero {
