@@ -12,29 +12,48 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">🍰 Dulce Aroma</div>
+      <div class="logo">
+        <a href="#inicio">
+          <img src="img/logo.png" alt="Dulce Aroma" style="height: 50px;">
+          <span class="titulo">Dulce Aroma</span>
+        </a>
+      </div>
       <nav>
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
+        <a href="informacion-precios.html">Precios e Info</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#contacto">Contacto</a>
+        <a href="#faq-container">Preguntas Frecuentes</a>
       </nav>
     </header>
 
-    <section id="inicio" class="hero">
-      <div class="hero-content">
-        <h1>Endulzamos tus momentos especiales</h1>
-        <p>
-          Repostería artesanal hecha con ingredientes de calidad y mucho amor.
-        </p>
-        <a
-          href="https://wa.me/5492610000000"
-          class="btn-primary"
-          target="_blank"
-        >
-          Hacé tu pedido por WhatsApp
-        </a>
-      </div>
+    <section id="inicio" class="hero-carousel">
+        <div class="carousel-inner">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/syed-maaz-QLSh4y2v93c-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Endulzamos tus momentos especiales</h1>
+                    <p>Repostería artesanal hecha con ingredientes de calidad y mucho amor.</p>
+                    <a href="https://wa.me/5492610000000" class="btn-primary" target="_blank">Hacé tu pedido por WhatsApp</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/brooke-lark-pGM4sjt_BdQ-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Diseños Personalizados</h1>
+                    <p>Creamos la torta de tus sueños para ese evento inolvidable.</p>
+                    <a href="#productos" class="btn-primary">Ver Catálogo</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('img/american-heritage-chocolate-Bkm6wO6pHOY-unsplash.jpg');">
+                <div class="hero-content">
+                    <h1>Sabor 100% Artesanal</h1>
+                    <p>Recetas tradicionales con un toque moderno y único.</p>
+                    <a href="#contacto" class="btn-primary">Consultar Presupuesto</a>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
     </section>
 
     <section id="productos" class="section">
@@ -67,6 +86,29 @@
       </div>
     </section>
 
+    <section id="destacados" class="section">
+          <h2>Productos destacados</h2>
+          <div class="cards">
+            <div class="card">
+              <img src="/img/lemonpie.jpg" alt="Lemon Pie" />
+              <h3>Lemon Pie</h3>
+              <p>La combinación perfecta entre el ácido del limón y el dulzor del merengue suizo.</p>
+            </div>
+
+            <div class="card">
+              <img src="/img/cheesecake.jpg" alt="Cheesecake" />
+              <h3>Cheesecake de Frutos Rojos</h3>
+              <p>Base crocante, relleno cremoso y una cobertura artesanal de frutos rojos de estación.</p>
+            </div>
+
+            <div class="card">
+              <img src="/img/alfajores.jpg" alt="Alfajores" />
+              <h3>Alfajores Artesanales</h3>
+              <p>Nuestra versión de autor con abundante dulce de leche y masa que se deshace en la boca.</p>
+            </div>
+          </div>
+        </section>
+
     <section id="sobre-mi" class="section alt">
       <h2>Sobre mí</h2>
       <p class="text-center">
@@ -74,6 +116,10 @@
         mano, cuidando cada detalle para que disfrutes algo único, rico y
         especial.
       </p>
+      <p class="text-center"> Soy apasionada por la repostería artesanal. Cada producto está hecho a
+        mano, cuidando cada detalle para que disfrutes algo único, rico y
+        especial.
+        </p>
     </section>
 
     <section class="section">
@@ -97,15 +143,44 @@
       <p id="formMessage"></p>
     </section>
 
+    <section id="faq-container" class="section alt"> 
+      <h2>Preguntas Frecuentes 🍬</h2>
+      
+      <div class="faq-item">
+        <button class="faq-question">¿Hacen envíos el mismo día?</button>
+        <div class="faq-answer">
+          <p>¡Sí! Si realizas tu pedido antes de las 14:00 hs, tus dulces llegarán el mismo día a tu domicilio.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">¿Tienen opciones sin azúcar o gluten?</button>
+        <div class="faq-answer">
+          <p>Contamos con una línea especial "Sweet Care" diseñada específicamente para celíacos y personas que no consumen azúcar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">¿Cómo conservo mis dulces?</button>
+        <div class="faq-answer">
+          <p>Recomendamos mantenerlos en un lugar fresco y seco. En el caso de los rellenos con crema, deben ir directo al refrigerador.</p>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
       <p>© 2026 Dulce Aroma | Repostería Artesanal</p>
-      <p>📍 Mendoza, Argentina | 📱 Instagram & WhatsApp</p>
+      <p>📍 Mendoza, Argentina | 📱 Instagram & WhatsApp </p>
     </footer>
 
     <a href="https://wa.me/5492610000000" class="whatsapp-btn" target="_blank"
       >💬</a
     >
+    
 
+
+
+    
     <script src="script.js"></script>
   </body>
 </html>
