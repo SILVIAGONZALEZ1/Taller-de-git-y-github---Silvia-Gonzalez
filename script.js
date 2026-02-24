@@ -89,52 +89,52 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // ---------------------------------------------------------
-    // 5. MODAL DE IMÁGENES (LIGHTBOX)
+   // ---------------------------------------------------------
+    // 5. MODAL DE IMÁGENES (LIGHTBOX) - CLIC EN TODA LA FILA
     // ---------------------------------------------------------
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("expandedImg");
     const captionText = document.getElementById("caption");
-    const thumbnails = document.querySelectorAll(".row-thumbnail");
+    const interactiveRows = document.querySelectorAll(".interactive-row"); // Ahora seleccionamos las filas
     const spanClose = document.querySelector(".close-modal");
 
-    // Verificamos que el modal exista en la página actual
-    if (modal && thumbnails.length > 0) {
+    if (modal && interactiveRows.length > 0) {
         
-        // Al hacer clic en cualquier miniatura...
-        thumbnails.forEach(img => {
-            img.addEventListener('click', function(e) {
-                e.stopPropagation(); // Evita que el clic cierre o abra el acordeón si están superpuestos
-                modal.style.display = "flex";
+        // Al hacer clic en cualquier fila interactiva...
+        interactiveRows.forEach(row => {
+            row.addEventListener('click', function(e) {
+                e.stopPropagation(); 
                 
-                // Pequeño retraso para que la animación CSS funcione bien
-                setTimeout(() => modal.classList.add('show'), 10);
+                // Buscamos la imagen que está dentro de ESTA fila específica
+                const thumbnailImg = this.querySelector('.row-thumbnail');
                 
-                // Copiamos la imagen y el texto alternativo
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt; 
+                // Si la fila tiene una imagen, abrimos el modal
+                if (thumbnailImg) {
+                    modal.style.display = "flex";
+                    setTimeout(() => modal.classList.add('show'), 10);
+                    
+                    // Copiamos la ruta y el texto de esa imagen
+                    modalImg.src = thumbnailImg.src;
+                    captionText.innerHTML = thumbnailImg.alt; 
+                }
             });
         });
 
-        // Función para cerrar el modal
         const closeModal = () => {
             modal.classList.remove('show');
-            setTimeout(() => modal.style.display = "none", 300); // Espera a que termine la animación
+            setTimeout(() => modal.style.display = "none", 300); 
         };
 
-        // Cerrar al tocar la 'X'
         if (spanClose) {
             spanClose.addEventListener('click', closeModal);
         }
 
-        // Cerrar al tocar en la zona oscura fuera de la imagen
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 closeModal();
             }
         });
 
-        // Cerrar al presionar la tecla "Escape" en el teclado
         document.addEventListener('keydown', function(e) {
             if (e.key === "Escape" && modal.classList.contains('show')) {
                 closeModal();

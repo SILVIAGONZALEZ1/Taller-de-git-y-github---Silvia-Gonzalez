@@ -153,6 +153,32 @@ body {
     color: #d4a373; /* Cambia a tu color principal al pasar el mouse */
 }
 
+/* --- FILA INTERACTIVA (Toda la fila hace zoom) --- */
+.interactive-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: zoom-in; /* El cursor de lupa está aplicado a todo el recuadro */
+}
+
+.interactive-row:hover {
+  background-color: rgba(212, 163, 115, 0.1); /* Color cremita al pasar el mouse */
+}
+
+/* --- TAMAÑO EXACTO DE LAS MINIATURAS --- */
+.row-thumbnail {
+    width: 70px;        /* Ancho fijo */
+    height: 70px;       /* Alto fijo */
+    object-fit: cover;  /* Evita que la foto se estire o deforme */
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 2px solid #fff;
+    flex-shrink: 0;     /* Evita que la foto se achique en pantallas chicas */
+}
+
 /* Cambia el cursor cuando pasas por encima de una miniatura */
 .row-thumbnail {
     cursor: zoom-in;
