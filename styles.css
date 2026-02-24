@@ -329,6 +329,16 @@ input, textarea {
     border-radius: 50%;
     text-decoration: none;
 }
+.footer {
+  background-color: #f7b7b7; 
+  text-align: center;
+  padding: 20px;
+}
+
+.footer p {
+  color: #000000;      
+  font-weight: bold;    
+  margin: 5px 0;
 
 /* Estilos para Promociones */
 .promos-grid {
