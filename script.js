@@ -21,13 +21,13 @@ form.addEventListener("submit", function (e) {
   form.reset();
 });
 
-// FAQ: ocultar respuestas y añadir toggle a cada pregunta
+// FAQ: mostrar respuestas por defecto y añadir toggle a cada pregunta
 document.querySelectorAll('.faq-answer').forEach((ans) => {
-  ans.style.display = 'none';
+  ans.style.display = 'block';
 });
 
 document.querySelectorAll('.faq-question').forEach((btn) => {
-  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-expanded', 'true');
   btn.addEventListener('click', () => {
     const answer = btn.nextElementSibling;
     const isOpen = answer.style.display === 'block';

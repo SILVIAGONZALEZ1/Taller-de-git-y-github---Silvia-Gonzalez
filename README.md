@@ -11,6 +11,7 @@ styles.css - Agregados estilos para las nuevas secciones (tablas de precios, pro
 Agregar carousel con 3 imagenes, estilo y funcionamiento js
 
 He subido una imagen nueva para el logo, lo agregue al header reemplazando el logo anterior, y modifique el CSS para el logo.
+Julian Zamora: Cambios en preguntas frecuentes, agregando mas preguntas con sus respectivas respuestas y cambiando el estilo de como se presentan las preguntas. 
 
 Blitowsky{
   Cambios en la sección "Información de precios"

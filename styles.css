@@ -646,25 +646,28 @@ input, textarea {
     padding: 18px 40px;
 }
 
-/* Responsive adicional */
-@media (max-width: 768px) {
-    .price-row {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-    }
-    
-    .product-price {
-        font-size: 1.5rem;
-    }
-    
-    .cta-section h2 {
-        font-size: 1.6rem;
-    }
-    
-    .delivery-info {
-        grid-template-columns: 1fr;
-    }
+/* Estilos para FAQ */
+.faq-question {
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #7a4a3b;
+    cursor: pointer;
+    padding: 15px 0;
+    width: 100%;
+    transition: color 0.3s;
+}
+
+.faq-question:hover {
+    color: #d16c7c;
+}
+
+.faq-answer {
+    padding: 0 20px 20px 0;
+    color: #4b2e2e;
+    line-height: 1.6;
 }
 /* --- ESTILOS DEL CAROUSEL --- */
 
