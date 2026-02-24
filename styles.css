@@ -571,3 +571,50 @@ input, textarea {
         font-size: 18px;
     }
 }
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px; 
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+    overflow: hidden; 
+}
+
+.card img {
+    width: 90%; 
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.5s ease-in-out; 
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 15px 35px rgba(209, 108, 124, 0.25);
+    border-color: #d16c7c;
+    z-index: 5; 
+}
+
+.card:hover img {
+    transform: scale(1.08); 
+}
+
+.card:hover h3 {
+    color: #d16c7c;
+    transition: color 0.3s ease;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Hace que el enlace ocupe todo el espacio de la card */
+    width: 100%;
+}
