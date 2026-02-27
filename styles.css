@@ -908,6 +908,52 @@ input, select, textarea{
     width: 100%;
 }
 
+/* Ajustes de tamaño para imágenes de eventos y tortas */
+#eventos-especiales img {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+#buffet-bodas img {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Regla específica para la imagen de la torta (si se quiere un límite distinto) */
+.img-torta {
+    display: block;
+    margin: 18px auto;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+.contenido-bodas {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 20px;
+  text-align: center; /* Centra el título */
+}
+.contenido-bodas h2 {
+  flex: 0 0 100%; /* Ocupa todo el ancho */
+  text-align: center;
+  margin-bottom: 30px;
+  
+
+}
+
 /* --- ESTILOS PARA LAS MINIATURAS DE PRECIOS --- */
 
 .row-thumbnail {
