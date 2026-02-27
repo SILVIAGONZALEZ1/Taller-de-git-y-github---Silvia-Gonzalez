@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Envíos — Dulce Aroma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div>
+        <h1>Envíos y entregas — Dulce Aroma</h1>
+        <div class="small">Calculá el costo de envío de los productos publicados en la tienda.</div>
+      </div>
+
+      <nav>
+        <a href="index.html">Volver a la página principal</a>
+      </nav>
+    </header>
+
+
+    <!-- GALERÍA -->
+    <section class="gallery-section">
+      <img id="mainPhoto" class="main-photo" src="img/deva-williamson-S2jw81lfrG0-unsplash.jpg" alt="Producto destacado">
+
+      <div class="gallery" id="gallery">
+        <img src="img/deva-williamson-S2jw81lfrG0-unsplash.jpg" data-large="img/deva-williamson-S2jw81lfrG0-unsplash.jpg" alt="Tortas personalizadas">
+        <img src="img/jacob-thomas-6jHpcBPw7i8-unsplash.jpg" data-large="img/jacob-thomas-6jHpcBPw7i8-unsplash.jpg" alt="Cupcakes">
+        <img src="img/katie-rosario-QNyRp21hb5I-unsplash.jpg" data-large="img/katie-rosario-QNyRp21hb5I-unsplash.jpg" alt="Cookies artesanales">
+      </div>
+    </section>
+
+
+    <!-- FORMULARIO -->
+    <form id="shippingForm">
+
+      <!-- DATOS -->
+      <div class="card">
+
+        <label for="product">Producto</label>
+        <select id="product">
+          <option value="3500">Tortas personalizadas — $3500</option>
+          <option value="450">Cupcakes — $450</option>
+          <option value="250">Cookies artesanales — $250</option>
+          <option value="custom">Otro (ingresar precio)</option>
+        </select>
+
+        <div id="customPriceWrap" class="hidden">
+          <label for="customPrice">Precio del producto</label>
+          <input type="text" id="customPrice" placeholder="Ej. 199.99">
+        </div>
+
+        <label for="name">Nombre y apellido</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" required>
+
+        <label for="phone">Teléfono</label>
+        <input type="text" id="phone">
+
+        <label for="address">Dirección</label>
+        <input type="text" id="address" required>
+
+        <label for="city">Ciudad / Localidad</label>
+        <input type="text" id="city">
+
+        <label for="distance">Zona / Distancia</label>
+        <select id="distance">
+          <option value="local">Local (0–5 km)</option>
+          <option value="regional">Regional (5–50 km)</option>
+          <option value="nacional">Nacional (50–1000 km)</option>
+        </select>
+
+        <label for="notes">Notas para entrega</label>
+        <textarea id="notes" rows="3"></textarea>
+      </div>
+
+
+      <!-- RESUMEN -->
+      <aside class="summary">
+        <h3>Resumen de envío</h3>
+
+        <div class="small">Método de pago</div>
+
+        <label><input type="radio" name="payment" value="efectivo" checked> Efectivo</label>
+        <label><input type="radio" name="payment" value="transferencia"> Transferencia</label>
+        <label><input type="radio" name="payment" value="tarjeta"> Tarjeta</label>
+
+        <label for="shippingSpeed">Velocidad de envío</label>
+        <select id="shippingSpeed">
+          <option value="standard">Estándar (2-5 días)</option>
+          <option value="express">Express (1-2 días) + $50</option>
+        </select>
+
+        <button type="button" class="btn" id="calculate">Calcular costo</button>
+        <button type="submit" class="btn secondary">Confirmar pedido</button>
+
+        <div id="result" class="result hidden"></div>
+      </aside>
+
+    </form>
+
+
+    <!-- POLÍTICAS -->
+    <section id="politicas">
+      <h2>Información de Envíos y Devoluciones</h2>
+
+      <h3>📦 Políticas de Envío</h3>
+      <p>Realizamos envíos a todo el país. El tiempo estimado es de <strong>3 a 7 días hábiles</strong>.</p>
+
+      <h3>⏰ Horarios de Entrega</h3>
+      <p>Lunes a viernes de <strong>9:00 a 18:00 hs</strong>.</p>
+
+      <h3>🔄 Cambios y Devoluciones</h3>
+      <p>Cambios dentro de los <strong>10 días posteriores a la recepción</strong>.</p>
+
+      <h3>💳 Medios de Pago</h3>
+      <p>Tarjetas, transferencias y billeteras virtuales.</p>
+    </section>
+
+  </div>
+
+
+  <!-- JS -->
+  <script>
+    const product = document.getElementById('product');
+    const customWrap = document.getElementById('customPriceWrap');
+    const result = document.getElementById('result');
+
+    product.addEventListener('change', () => {
+      customWrap.classList.toggle('hidden', product.value !== 'custom');
+    });
+
+    function precio(val){
+      const n = parseFloat(val);
+      return isNaN(n) ? 0 : n;
+    }
+
+    function envio(dist, speed){
+      let base = {local:30, regional:70, nacional:180}[dist] || 0;
+      if(speed === 'express') base += 50;
+      return base;
+    }
+
+    document.getElementById('calculate').onclick = () => {
+      const prod = product.value === 'custom'
+        ? precio(document.getElementById('customPrice').value)
+        : precio(product.value);
+
+      const ship = envio(distance.value, shippingSpeed.value);
+      const total = prod + ship;
+
+      result.classList.remove('hidden');
+      result.innerHTML = `Total a pagar: <strong>$${total.toFixed(2)}</strong>`;
+    };
+  </script>
+
+</body>
+</html>
