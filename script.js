@@ -1,4 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
+// Scroll suave
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document
+      .querySelector(this.getAttribute("href"))
+      .scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// Validación simple del formulario
+const form = document.getElementById("contactForm");
+const message = document.getElementById("formMessage");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  message.textContent = "¡Gracias por tu mensaje! Te responderemos pronto 💕";
+  message.style.color = "green";
+  form.reset();
+});
+
+// FAQ: mostrar respuestas por defecto y añadir toggle a cada pregunta
+document.querySelectorAll('.faq-answer').forEach((ans) => {
+  ans.style.display = 'block';
+});
+
+document.querySelectorAll('.faq-question').forEach((btn) => {
+  btn.setAttribute('aria-expanded', 'true');
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+});
+/* --- LÓGICA DEL CAROUSEL --- */
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+/**
+ * Muestra un slide específico basado en su índice
+ */
+function showSlide(index) {
+    // 1. Quitamos la clase 'active' de la imagen actual
+    slides[currentSlide].classList.remove('active');
     
     // ---------------------------------------------------------
     // 1. MENU HAMBURGUESA (Móvil)
