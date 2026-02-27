@@ -100,10 +100,17 @@ body{
   object-fit:cover;
 }
 
+<<<<<<< HEAD
 .text-center{
   text-align:center;
   max-width:700px;
   margin:auto;
+=======
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+>>>>>>> 5c7967ab05277dd89dbbeaaa0d4caed6b19041d8
 }
 
 /* BENEFICIOS */
@@ -122,11 +129,25 @@ body{
   padding:20px;
 }
 
+<<<<<<< HEAD
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:20px;
+=======
+.card .price {
+    color: #d16c7c;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.text-center {
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+>>>>>>> 5c7967ab05277dd89dbbeaaa0d4caed6b19041d8
 }
 
 .small{color:#666;font-size:.9rem}
@@ -270,4 +291,423 @@ input, select, textarea{
   padding:15px;
   border-radius:50%;
   text-decoration:none;
+}
+
+/* Estilos para Promociones */
+.promos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.promo-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    position: relative;
+    border: 2px solid #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    border-color: #d16c7c;
+}
+
+.promo-card.destacado {
+    border: 3px solid #d16c7c;
+    background: linear-gradient(135deg, #fff6f0 0%, #ffffff 100%);
+}
+
+.promo-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #d16c7c;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(209, 108, 124, 0.4);
+}
+
+.promo-badge.especial {
+    background: linear-gradient(135deg, #d16c7c 0%, #b85464 100%);
+}
+
+.promo-card h3 {
+    color: #7a4a3b;
+    font-size: 1.5rem;
+    margin: 20px 0 15px 0;
+}
+
+.promo-description {
+    color: #666;
+    margin-bottom: 20px;
+    min-height: 50px;
+    line-height: 1.6;
+}
+
+.promo-old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.promo-price {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #d16c7c;
+    margin: 15px 0;
+}
+
+.promo-save {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.promo-disclaimer {
+    background: #fff9e6;
+    padding: 20px 25px;
+    border-radius: 12px;
+    border-left: 4px solid #ffa726;
+    margin-top: 30px;
+}
+
+.promo-disclaimer p {
+    color: #7a4a3b;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.promo-disclaimer strong {
+    color: #f57c00;
+}
+
+/* Estilos para Formas de Pago */
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.payment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+.payment-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.payment-card h3 {
+    color: #7a4a3b;
+    margin: 15px 0 10px 0;
+    font-size: 1.3rem;
+}
+
+.payment-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    min-height: 40px;
+}
+
+.payment-bonus {
+    display: inline-block;
+    background: #d16c7c;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.payment-note {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid #d16c7c;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+.payment-note strong {
+    color: #7a4a3b;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.payment-note ul {
+    margin-top: 20px;
+    margin-left: 25px;
+    line-height: 2;
+}
+
+.payment-note li {
+    color: #4b2e2e;
+    margin-bottom: 8px;
+}
+
+/* Responsive para promociones y pagos */
+@media (max-width: 768px) {
+    .promos-grid,
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .promo-price {
+        font-size: 1.8rem;
+    }
+    
+    .payment-icon {
+        font-size: 3rem;
+    }
+}
+
+/* Estilos para la página de información de precios */
+.price-category {
+    margin-bottom: 50px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+}
+
+.price-category h3 {
+    color: #7a4a3b;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #d16c7c;
+}
+
+.price-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #fff6f0;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.price-row:hover {
+    transform: translateX(5px);
+    background: #ffe8db;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    color: #4b2e2e;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d16c7c;
+}
+
+.price-note {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff9e6;
+    border-left: 4px solid #d16c7c;
+    font-size: 0.95rem;
+    color: #7a4a3b;
+    font-style: italic;
+}
+
+/* Estilos para entregas */
+.delivery-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.delivery-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+}
+
+.delivery-card h3 {
+    color: #7a4a3b;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.delivery-card p {
+    margin: 10px 0;
+    color: #4b2e2e;
+}
+
+.delivery-card strong {
+    color: #d16c7c;
+}
+
+.delivery-note {
+    background: #fff6f0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-style: italic;
+    color: #7a4a3b;
+}
+
+/* Sección de llamado a la acción */
+.cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, #fff6f0 0%, #ffffff 100%);
+    padding: 60px 20px;
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+    color: #7a4a3b;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-large {
+    font-size: 1.2rem;
+    padding: 18px 40px;
+}
+
+/* Responsive adicional */
+@media (max-width: 768px) {
+    .price-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .product-price {
+        font-size: 1.5rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .delivery-info {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- ESTILOS DEL CAROUSEL --- */
+
+.hero-carousel {
+    position: relative;
+    height: 80vh; /* Altura del carrusel */
+    width: 100%;
+    overflow: hidden;
+    background-color: #000; /* Fondo de seguridad mientras cargan las fotos */
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.8s ease-in-out; /* Transición suave de desvanecido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #fff;
+}
+
+.slide.active {
+    opacity: 1; /* Se muestra solo el que tiene la clase active */
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    padding: 20px;
+    max-width: 800px;
+}
+
+/* Botones de navegación (Flechas) */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+    border-radius: 50%;
+    margin: 0 15px;
+    transition: background 0.3s;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background: rgba(211, 108, 124, 0.8); /* Rosa viejo al pasar el mouse */
+}
+
+/* Ajustes para pantallas móviles */
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 60vh;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .prev, .next {
+        padding: 10px;
+        font-size: 18px;
+    }
 }
