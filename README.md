@@ -25,3 +25,5 @@ Blitowsky{
 
 Andrea Pereyra: cambios en la sexion index y style. 
 Añadí efectos a las cards del index. A las de la sección nuestros productos un hipervinculo para que te dirija a la pagina de precios
+Gabriel Perez:
+  Se agrego Eventos Especiales y Buffet de bodas, con sus respectivas imagenes e informacion. Se modifico y mejoro los errores
