@@ -1,54 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-// Scroll suave
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document
-      .querySelector(this.getAttribute("href"))
-      .scrollIntoView({ behavior: "smooth" });
-  });
-});
 
-// Validación simple del formulario
-const form = document.getElementById("contactForm");
-const message = document.getElementById("formMessage");
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  message.textContent = "¡Gracias por tu mensaje! Te responderemos pronto 💕";
-  message.style.color = "green";
-  form.reset();
-});
-
-// FAQ: mostrar respuestas por defecto y añadir toggle a cada pregunta
-document.querySelectorAll('.faq-answer').forEach((ans) => {
-  ans.style.display = 'block';
-});
-
-document.querySelectorAll('.faq-question').forEach((btn) => {
-  btn.setAttribute('aria-expanded', 'true');
-  btn.addEventListener('click', () => {
-    const answer = btn.nextElementSibling;
-    const isOpen = answer.style.display === 'block';
-    answer.style.display = isOpen ? 'none' : 'block';
-    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-  });
-});
-/* --- LÓGICA DEL CAROUSEL --- */
-
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-
-/**
- * Muestra un slide específico basado en su índice
- */
-function showSlide(index) {
-    // 1. Quitamos la clase 'active' de la imagen actual
-    slides[currentSlide].classList.remove('active');
-    
     // ---------------------------------------------------------
-    // 1. MENU HAMBURGUESA (Móvil)
+    // 1. SCROLL SUAVE
+    // ---------------------------------------------------------
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") { // Evita errores si el href es solo "#"
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+    });
+
+    // ---------------------------------------------------------
+    // 2. VALIDACIÓN SIMPLE DEL FORMULARIO (Contacto general)
+    // ---------------------------------------------------------
+    const contactForm = document.getElementById("contactForm"); // Nombre cambiado a contactForm
+    const message = document.getElementById("formMessage");
+
+    if (contactForm && message) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            message.textContent = "¡Gracias por tu mensaje! Te responderemos pronto 💕";
+            message.style.color = "green";
+            contactForm.reset();
+        });
+    }
+
+    // ---------------------------------------------------------
+    // 3. FAQ (Preguntas Frecuentes)
+    // ---------------------------------------------------------
+    document.querySelectorAll('.faq-answer').forEach((ans) => {
+        ans.style.display = 'block';
+    });
+
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            if (answer) {
+                const isOpen = answer.style.display === 'block';
+                answer.style.display = isOpen ? 'none' : 'block';
+                btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+            }
+        });
+    });
+
+    // ---------------------------------------------------------
+    // 4. LÓGICA DEL CAROUSEL (Estructura corregida)
+    // ---------------------------------------------------------
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        // Solo ejecuta si hay slides en la página actual
+        if (slides.length > 0) {
+            slides[currentSlide].classList.remove('active');
+            
+            // Aquí deberías agregar la lógica para el nuevo slide, por ejemplo:
+            // currentSlide = index;
+            // slides[currentSlide].classList.add('active');
+        }
+    } // ¡Esta llave de cierre era la que faltaba!
+
+    // ---------------------------------------------------------
+    // 5. MENU HAMBURGUESA (Móvil)
     // ---------------------------------------------------------
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -66,9 +86,10 @@ function showSlide(index) {
     }
 
     // ---------------------------------------------------------
-    // 2. EFECTO SCROLL FADE-IN
+    // 6. EFECTO SCROLL FADE-IN
     // ---------------------------------------------------------
     const faders = document.querySelectorAll('.fade-in');
+    
     if (faders.length > 0) {
         const appearOptions = {
             threshold: 0.2,
@@ -92,13 +113,12 @@ function showSlide(index) {
     }
 
     // ---------------------------------------------------------
-    // 3. VALIDACIÓN DEL FORMULARIO (Solo en la página de inicio)
+    // 7. VALIDACIÓN DEL FORMULARIO (Página de inicio/pedidos)
     // ---------------------------------------------------------
-    const form = document.getElementById('orderForm');
+    const orderForm = document.getElementById('orderForm'); // Nombre cambiado a orderForm
     
-    // El "if (form)" es la clave: solo ejecuta esto si encuentra el formulario
-    if (form) {
-        form.addEventListener('submit', (e) => {
+    if (orderForm) {
+        orderForm.addEventListener('submit', (e) => {
             e.preventDefault(); 
             const nombre = document.getElementById('nombre').value;
             const sabor = document.getElementById('sabor').value;
@@ -109,58 +129,49 @@ function showSlide(index) {
             }
 
             alert(`¡Gracias ${nombre}! Hemos recibido tu consulta por la torta de ${sabor}. Nos pondremos en contacto pronto.`);
-            form.reset();
+            orderForm.reset();
         });
     }
 
     // ---------------------------------------------------------
-    // 4. ACORDEONES (Solo en la página de precios)
+    // 8. ACORDEONES (Página de precios)
     // ---------------------------------------------------------
     const accordions = document.querySelectorAll('.accordion-btn');
 
     if (accordions.length > 0) {
         accordions.forEach(acc => {
             acc.addEventListener('click', function() {
-                // Alternar clase active
                 this.classList.toggle('active');
-
-                // Seleccionar el panel siguiente
                 const panel = this.nextElementSibling;
-
-                // Abrir o cerrar
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+                if (panel) {
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
                 }
             });
         });
     }
-   // ---------------------------------------------------------
-    // 5. MODAL DE IMÁGENES (LIGHTBOX) - CLIC EN TODA LA FILA
+
+    // ---------------------------------------------------------
+    // 9. MODAL DE IMÁGENES (LIGHTBOX)
     // ---------------------------------------------------------
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("expandedImg");
     const captionText = document.getElementById("caption");
-    const interactiveRows = document.querySelectorAll(".interactive-row"); // Ahora seleccionamos las filas
+    const interactiveRows = document.querySelectorAll(".interactive-row");
     const spanClose = document.querySelector(".close-modal");
 
     if (modal && interactiveRows.length > 0) {
-        
-        // Al hacer clic en cualquier fila interactiva...
         interactiveRows.forEach(row => {
             row.addEventListener('click', function(e) {
                 e.stopPropagation(); 
-                
-                // Buscamos la imagen que está dentro de ESTA fila específica
                 const thumbnailImg = this.querySelector('.row-thumbnail');
                 
-                // Si la fila tiene una imagen, abrimos el modal
                 if (thumbnailImg) {
                     modal.style.display = "flex";
                     setTimeout(() => modal.classList.add('show'), 10);
-                    
-                    // Copiamos la ruta y el texto de esa imagen
                     modalImg.src = thumbnailImg.src;
                     captionText.innerHTML = thumbnailImg.alt; 
                 }
