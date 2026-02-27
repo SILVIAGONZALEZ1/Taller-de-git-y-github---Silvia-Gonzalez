@@ -189,30 +189,3 @@ function showSlide(index) {
         });
     }
 });
-    // 3. Mostramos la nueva imagen
-    slides[currentSlide].classList.add('active');
-}
-
-/**
- * Función que llaman los botones 'prev' y 'next'
- */
-function changeSlide(direction) {
-    showSlide(currentSlide + direction);
-}
-
-/**
- * Cambio automático: cambia de slide cada 5 segundos
- */
-let autoPlay = setInterval(() => {
-    changeSlide(1);
-}, 5000);
-
-// Opcional: Pausar el autoplay cuando el usuario hace clic en una flecha
-// para que no se cambie la imagen bruscamente mientras interactúa.
-const controls = document.querySelectorAll('.prev, .next');
-controls.forEach(control => {
-    control.addEventListener('click', () => {
-        clearInterval(autoPlay);
-        autoPlay = setInterval(() => { changeSlide(1); }, 5000);
-    });
-});
