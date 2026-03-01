@@ -21,3 +21,15 @@ Blitowsky{
     - Se añadió la funcionalidad de acordeón a las categorías de productos, al clickear sobre la categoría despliega todos los productos relacionados
     - Se añadió la funcionalidad que permite visualizar en grande las imágenes ilustrativas al clickear la tarjeta del producto
 }
+
+
+Andrea Pereyra: cambios en la sexion index y style. 
+Añadí efectos a las cards del index. A las de la sección nuestros productos un hipervinculo para que te dirija a la pagina de precios
+Gabriel Perez:
+  Se agrego Eventos Especiales y Buffet de bodas, con sus respectivas imagenes e informacion. Se modifico y mejoro los errores
+Proyecto para el Taller de Git y Github.
+
+# ENLACE EXTERNO ENVIOS
+
+Este enlace contiene una página `envios.html` que permite calcular costos de envío, seleccionar método de pago, y dejar los datos de entrega. Además contiene información de envíos y devoluciones. 
+

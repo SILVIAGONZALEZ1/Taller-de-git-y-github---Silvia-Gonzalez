@@ -1,24 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    color: #4b2e2e;
-    line-height: 1.6;
+/* BASE */
+body{
+  font-family:'Segoe UI', Arial, sans-serif;
+  color:#4b2e2e;
+  line-height:1.6;
+  background:#f5f6f8;
 }
 
-.header {
-    background: #fff6f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+/* HEADER */
+.header{
+  background:#fff6f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 /* --- ESTILOS DEL ACORDEÓN --- */
@@ -153,32 +157,6 @@ body {
     color: #d4a373; /* Cambia a tu color principal al pasar el mouse */
 }
 
-/* --- FILA INTERACTIVA (Toda la fila hace zoom) --- */
-.interactive-row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  cursor: zoom-in; /* El cursor de lupa está aplicado a todo el recuadro */
-}
-
-.interactive-row:hover {
-  background-color: rgba(212, 163, 115, 0.1); /* Color cremita al pasar el mouse */
-}
-
-/* --- TAMAÑO EXACTO DE LAS MINIATURAS --- */
-.row-thumbnail {
-    width: 70px;        /* Ancho fijo */
-    height: 70px;       /* Alto fijo */
-    object-fit: cover;  /* Evita que la foto se estire o deforme */
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 2px solid #fff;
-    flex-shrink: 0;     /* Evita que la foto se achique en pantallas chicas */
-}
-
 /* Cambia el cursor cuando pasas por encima de una miniatura */
 .row-thumbnail {
     cursor: zoom-in;
@@ -190,69 +168,94 @@ body {
     color: #7a4a3b;
     font-weight: 500;
 }
-
-.logo a {
-    display: flex;
-    align-items: center;
-    gap: 12px; 
-    text-decoration: none;
-    color: #4b2e2e; 
+.header nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#7a4a3b;
+  font-weight:500;
 }
 
-.logo img {
-    height: 45px;
-    width: auto;
-    object-fit: contain;
-}
-.titulo{
-    font-weight: bold;
-    font-size: 2rem;
-    font-family: 'Segoe UI', sans-serif;
+.logo{
+  font-size:1.5rem;
+  font-weight:bold;
 }
 
-.hero {
-    background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
-        url("https://images.unsplash.com/photo-1542826438-8b6b9a2caa7d") center/cover;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
+/* HERO */
+.hero{
+  background:
+    linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+    url("https://images.unsplash.com/photo-1542826438-8b6b9a2caa7d") center/cover;
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
 }
 
-.hero-content h1 {
-    font-size: 2.8rem;
+.hero-content h1{font-size:2.8rem;}
+.hero-content p{margin:15px 0;font-size:1.2rem;}
+
+.btn-primary{
+  background:#d16c7c;
+  color:white;
+  padding:12px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
 }
 
-.hero-content p {
-    margin: 15px 0;
-    font-size: 1.2rem;
+/* SECCIONES */
+.section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
 }
 
-.btn-primary {
-    background: #d16c7c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
+.section h2{
+  text-align:center;
+  margin-bottom:40px;
 }
 
-.section {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: auto;
+.alt{background:#fff6f0;}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
-.section h2 {
-    text-align: center;
-    margin-bottom: 40px;
+.card{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.1);
+  min-width:0; /* 🔥 evita bug de grid en escritorio */
 }
 
-.alt {
-    background: #fff6f0;
+.card img{
+  width:100%;
+  border-radius:15px;
+  height:180px;
+  object-fit:cover;
+}
+
+.text-center{
+  text-align:center;
+  max-width:700px;
+  margin:auto;
+}
+
+/* BENEFICIOS */
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  text-align:center;
+  font-weight:500;
 }
 
 .cards {
@@ -260,20 +263,28 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
-
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+/* CONTENEDOR GENERAL */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
 
-.card img {
-    width: 100%;
-    border-radius: 15px;
-    height: 180px;
-    object-fit: cover;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.small{color:#666;font-size:.9rem}
+
+/* GALERÍA */
+.gallery{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+  overflow-x:auto;
 }
 
 .card .price {
@@ -288,46 +299,137 @@ body {
     max-width: 700px;
     margin: auto;
 }
-
-.benefits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    text-align: center;
-    font-weight: 500;
+.gallery img{
+  width:120px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-form {
-    max-width: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.main-photo{
+  width:100%;
+  max-height:350px;
+  object-fit:cover;
+  border-radius:10px;
 }
 
-input, textarea {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+/* =========================
+   FORMULARIO CORREGIDO
+   ========================= */
+
+form{
+  display:grid;
+
+  /* 🔥 ARREGLO REAL DEL ESCRITORIO */
+  grid-template-columns:minmax(0,2fr) minmax(280px,1fr);
+
+  gap:24px;
+  margin-top:20px;
+  align-items:start;
 }
 
-.footer {
-    background: #7a4a3b;
-    color: white;
-    text-align: center;
-    padding: 20px;
+/* 📺 pantallas muy grandes */
+@media (min-width:1200px){
+  form{
+    grid-template-columns:2.2fr 1fr;
+  }
 }
 
-.whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25d366;
-    color: white;
-    font-size: 1.8rem;
-    padding: 15px;
-    border-radius: 50%;
-    text-decoration: none;
+/* 📱 tablets y celular */
+@media (max-width:900px){
+  form{
+    grid-template-columns:1fr;
+  }
+
+  .summary{
+    position:relative;
+    top:auto;
+  }
+}
+
+/* CAMPOS */
+label{
+  display:block;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+
+/* RESUMEN LATERAL */
+.summary{
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  position:sticky;
+  top:20px;
+  height:fit-content;
+}
+
+/* BOTONES */
+.btn{
+  margin-top:12px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#0b67d0;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(0,0,0,.15);
+}
+
+.btn.secondary{background:#444;}
+
+/* RESULTADO */
+.result{
+  margin-top:12px;
+  padding:10px;
+  background:#e9f5ff;
+  border-radius:8px;
+}
+
+.hidden{display:none}
+
+/* POLÍTICAS */
+#politicas{
+  margin-top:30px;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+/* FOOTER */
+.footer{
+  background:#7a4a3b;
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+
+/* WHATSAPP */
+.whatsapp-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  color:white;
+  font-size:1.8rem;
+  padding:15px;
+  border-radius:50%;
+  text-decoration:none;
 }
 .footer {
   background-color: #f7b7b7; 
@@ -339,7 +441,19 @@ input, textarea {
   color: #000000;      
   font-weight: bold;    
   margin: 5px 0;
+}
 
+.footer {
+  background-color: #f7b7b7; 
+  text-align: center;
+  padding: 20px;
+}
+
+.footer p {
+  color: #000000;      
+  font-weight: bold;    
+  margin: 5px 0;
+}
 /* Estilos para Promociones */
 .promos-grid {
     display: grid;
@@ -761,6 +875,100 @@ input, textarea {
         font-size: 18px;
     }
 }
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px; 
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+    overflow: hidden; 
+}
+
+.card img {
+    width: 90%; 
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.5s ease-in-out; 
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 15px 35px rgba(209, 108, 124, 0.25);
+    border-color: #d16c7c;
+    z-index: 5; 
+}
+
+.card:hover img {
+    transform: scale(1.08); 
+}
+
+.card:hover h3 {
+    color: #d16c7c;
+    transition: color 0.3s ease;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Hace que el enlace ocupe todo el espacio de la card */
+    width: 100%;
+}
+
+/* Ajustes de tamaño para imágenes de eventos y tortas */
+#eventos-especiales img {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+#buffet-bodas img {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Regla específica para la imagen de la torta (si se quiere un límite distinto) */
+.img-torta {
+    display: block;
+    margin: 18px auto;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+.contenido-bodas {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 20px;
+  text-align: center; /* Centra el título */
+}
+.contenido-bodas h2 {
+  flex: 0 0 100%; /* Ocupa todo el ancho */
+  text-align: center;
+  margin-bottom: 30px;
+  
+
+}
+
 /* --- ESTILOS PARA LAS MINIATURAS DE PRECIOS --- */
 
 .row-thumbnail {
