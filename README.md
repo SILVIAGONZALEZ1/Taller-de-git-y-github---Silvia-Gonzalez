@@ -1,4 +1,5 @@
 Proyecto para el Taller de Git y Github 
+Cree un nuevo archivo llamado terminos.hmtl y agregue en index.html la linea de codigo necesaria para que funcione la modificacion 
 Agregué el apartado preguntas frecuentes, creando un nuevo archivo y redirigiendolo hacia el principal. Creando un botón dentro de la página e incluyendo algunas preguntas. 
 
 Cristina_Agregue: informacion-precios.html - Página principal con toda la información de precios, promociones y formas de pago
